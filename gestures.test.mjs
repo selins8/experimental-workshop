@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { GestureEngine, GESTURES } from '../js/gestures.js';
+import { GestureEngine, GESTURES } from './gestures.js';
 
 function makeHand({ indexDist = 0.8, pinkyDist = 0.8, ringDist = 0.8, handedness = 'right' } = {}) {
   return {
