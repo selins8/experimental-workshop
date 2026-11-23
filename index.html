@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <title>WebXR Quest 3 · 1:70 Hand Tracking Locomotion</title>
+  <link rel="stylesheet" href="./css/style.css" />
+
+  <!-- Sabit sürümlü Three.js ES Module Import Map -->
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
+      }
+    }
+  </script>
+</head>
+<body>
+  <!-- 3D WebGL / WebXR Canvas -->
+  <div id="scene-container"></div>
+
+  <!-- Minimal Kontrol Arayüzü -->
+  <header class="hud-top">
+    <div class="brand">
+      <h1>WebXR 1:70</h1>
+      <span class="subtitle">Hand Tracking Locomotion</span>
+    </div>
+    <div class="controls">
+      <button id="btn-enter-vr" class="btn btn-primary" disabled>Enter VR</button>
+      <button id="btn-start-cam" class="btn">Start Camera</button>
+      <button id="btn-stop-cam" class="btn" disabled>Stop Camera</button>
+      <button id="btn-reset-pos" class="btn">Reset Position</button>
+    </div>
+  </header>
+
+  <!-- Uyarı / Hata Bildirim Alanı -->
+  <div id="status-banner" class="banner hidden" role="alert"></div>
+
+  <!-- Debug Paneli -->
+  <aside class="debug-panel" aria-label="Sistem Durumu">
+    <h2>Telemetry</h2>
+    <dl class="metrics">
+      <div><dt>XR Session</dt><dd id="dbg-xr">Inactive</dd></div>
+      <div><dt>Hand Tracking</dt><dd id="dbg-tracking">Idle</dd></div>
+      <div><dt>Active Hand</dt><dd id="dbg-hand">None</dd></div>
+      <div><dt>Active Pinch</dt><dd id="dbg-pinch">None</dd></div>
+      <div><dt>Forward Speed</dt><dd id="dbg-speed">0.00 m/s</dd></div>
+      <div><dt>Rotation Speed</dt><dd id="dbg-rot">0.0 °/s</dd></div>
+      <div><dt>Model Scale</dt><dd id="dbg-scale">1:70 (×70 world)</dd></div>
+      <div><dt>FPS</dt><dd id="dbg-fps">0</dd></div>
+    </dl>
+    <div class="gesture-legend">
+      <span><strong>Thumb + Index:</strong> Walk</span>
+      <span><strong>Thumb + Pinky:</strong> Turn Right</span>
+      <span><strong>Thumb + Ring:</strong> Turn Left</span>
+    </div>
+  </aside>
+
+  <!-- Masaüstü Webcam & MediaPipe Landmark Önizlemesi -->
+  <div id="webcam-wrapper" class="webcam-wrapper hidden">
+    <video id="webcam-video" autoplay playsinline muted></video>
+    <canvas id="webcam-overlay"></canvas>
+  </div>
+
+  <script type="module" src="./js/main.js"></script>
+</body>
+</html>
